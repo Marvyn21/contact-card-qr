@@ -17,7 +17,7 @@ export default function QrGenerator() {
     const [qrUrl, setQrUrl] = useState("");
     const [showPreview, setShowPreview] = useState(false);
 
-    const handleInputChange = (e) => {\
+    const handleInputChange = (e) => {
         const {name, value} = e.target;
         setContactInfo(prev => ({
             ...prev,
@@ -29,7 +29,7 @@ export default function QrGenerator() {
         e.preventDefault();
 
         //encoding the data for presentation purpose
-        const encodeData = encodeURIComponent(JSON.stringify(contactInfo));
+        const encodedData = encodeURIComponent(JSON.stringify(contactInfo));
         const url = `https://yourwebsite.com/contact?data=${encodedData}`;
 
         setQrUrl(url);
@@ -183,8 +183,24 @@ export default function QrGenerator() {
                         />
                     </Card>
 
-                    
-
+                    <Box>
+                        <Button
+                            variant="outlined"
+                            onClick={() => window.print()}
+                            sx={{ mr: 2 }}
+                        >
+                            Print QR COde
+                        </Button>
+                        <Button
+                            variant="text"
+                            onClick={() => {
+                                //implement download functionality
+                                alert("Download functionality implemented here")
+                            }}
+                        >
+                            Download as Image
+                        </Button>
+                    </Box>
                 </Box>
             )}
         </Container>
